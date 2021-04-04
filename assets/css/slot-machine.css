@@ -95,4 +95,16 @@
   cursor: not-allowed;
 }
 
+.rotate {
+  transition: transform;
+  animation-name: rotate;
+  animation-duration: 0.2s;
+  animation-iteration-count: 2;
+}
+  
+@keyframes rotate {
+  from {transform: rotateX(0deg)}
+  to {transform: rotateX(360deg)}
+}
+
 
