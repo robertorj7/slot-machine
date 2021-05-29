@@ -43,7 +43,7 @@ buttonSpin.addEventListener('click', () => {
     }, 500);
   })
     
-  for (i = 1; i < 4; i++) {
+  for (i = 1; i < items.length; i++) {
     const slot = document.getElementById(`slot-item-${i}`);
     const hero = findHero(randomNumber());
 
@@ -55,12 +55,12 @@ buttonSpin.addEventListener('click', () => {
   }
 
   function randomNumber() {
-    return Math.floor(Math.random() * 4 + 1);  
+    return Math.floor(Math.random() * items.length + 1);  
   }
 
-  function findHero(id) {
-    return items.find((item) => {
-      return item.id === id;
+  function findHero(randomNumber) {
+    return items.find((item, index) => {
+      return (index+1) === randomNumber;
     })
   }
   
@@ -69,12 +69,13 @@ buttonSpin.addEventListener('click', () => {
   ) {
     const selectedId = selectedHeroesIds[0];
 
-    const reward = items.find((item) => {
+    const selectedItem = items.find((item) => {
       return item.id === selectedId;
-    }).reward;
+    });
+    const selectedReward = selectedItem.reward;
 
     setTimeout(() => {
-      balance.innerHTML = Number(balance.innerHTML) + reward;
+      balance.innerHTML = Number(balance.innerHTML) + selectedReward;
 
       if (selectedId === 1 || selectedId === 2) {
         title.innerHTML = "You Win!";
